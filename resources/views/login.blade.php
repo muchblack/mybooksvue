@@ -14,13 +14,8 @@
 </head>
 <body>
 <div id="app">
-    <div id="navbar">
-        <router-view class="view nav" name="Nav"></router-view>
-    </div>
-    <div id="body">
-        <div class="container">
-            <router-view></router-view>
-        </div>
+    <div class="container">
+        <router-view></router-view>
     </div>
 </div>
 

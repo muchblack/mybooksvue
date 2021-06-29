@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //});
 
 //Route::get('/{any}',[VueWebController::class,'index'])->where('any', '.*');
+//Route::get('/login',function() {
+//    return view('login');
+//})->where('any','.*');
+
 Route::get('/{any}',function() {
     return view('app');
 })->where('any','.*');

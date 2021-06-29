@@ -1,19 +1,70 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Books Index</div>
-                    <div class="panel-body">Books Index</div>
-                </div>
-            </div>
+        <div>
+            <button @click="addNewbook" class="btn btn-primary">新增書本</button>
         </div>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ISBN編號</th>
+                <th scope="col">分類</th>
+                <th scope="col">出版社</th>
+                <th scope="col">作者</th>
+                <th scope="col">書名</th>
+                <th scope="col">集數</th>
+                <th scope="col">出版社</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="Book in Books" :key="Book.id">
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>Mark</td>
+                <td>
+                    <button class="btn btn-primary">修改</button>
+                    <button @click="deleteBooks(Book.id)" class="btn btn-danger">刪除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Books"
+    data() {
+        return {
+            Books: [],
+        }
+    },
+    created() {
+        this.axios
+            .get('http://php.mybooksvue.laravel.pri/api/books')
+            .then(response => {
+                this.Books = response.data;
+            });
+    },
+    methods:
+        {
+            deleteBooks(id) {
+                this.axios
+                    .delete('http://php.mybooksvue.laravel.pri/api/books/${id}')
+                    .then(response => {
+                        let i = this.Books.map(item => item.id).indexOf(id);
+                        this.Books.splice(i, 1)
+                    });
+            },
+            addNewbook() {
+                window.location.href = '/books/new';
+            }
+        }
 }
 </script>
 

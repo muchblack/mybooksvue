@@ -9,6 +9,8 @@ require('./bootstrap');
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router';
 import Routes from './route.js';
+import axios from "axios";
+import VueAxios from "vue-axios";
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,4 +38,5 @@ const router = createRouter({
 
 const app = createApp({});
 app.use(router)
+app.use(VueAxios,axios)
 app.mount("#app")

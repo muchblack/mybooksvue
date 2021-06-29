@@ -1,19 +1,15 @@
 <template>
     <form>
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="member_name">使用者帳號</label>
+            <input type="text" class="form-control" id="member_name" aria-describedby="emailHelp" placeholder="請輸入帳號">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="member_pwd">使用者密碼</label>
+            <input type="password" class="form-control" id="member_pwd" placeholder="請輸入密碼">
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">登入</button>
     </form>
 </template>
 

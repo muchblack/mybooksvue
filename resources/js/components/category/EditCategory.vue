@@ -43,12 +43,12 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/category/parent/')
+            .get('/api/category/parent/')
             .then(response => {
                 this.Parents = response.data;
             });
         this.axios
-            .get(`http://php.mybooksvue.laravel.pri/api/category/${this.$route.params.id}`)
+            .get(`/api/category/${this.$route.params.id}`)
             .then(response => {
                 this.Category = response.data
             });
@@ -57,7 +57,7 @@ export default {
         {
             editCategory(){
                 this.axios
-                    .patch(`http://php.mybooksvue.laravel.pri/api/category/${this.$route.params.id}`,this.Category)
+                    .patch(`/api/category/${this.$route.params.id}`,this.Category)
                     .then(response => (
                         this.$router.push({
                             name:'category'

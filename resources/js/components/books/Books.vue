@@ -26,7 +26,7 @@
                 <td>{{Book.books_name}}</td>
                 <td>{{Book.set_no}}</td>
                 <td>
-                    <button class="btn btn-primary">修改</button>
+                    <button class="btn btn-primary" @click="EditBooks(Books.id)">修改</button>
                     <button @click="deleteBooks(Book.id)" class="btn btn-danger">刪除</button>
                 </td>
             </tr>
@@ -44,7 +44,7 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/books')
+            .get('/api/books')
             .then(response => {
                 this.Books = response.data;
             });
@@ -53,14 +53,24 @@ export default {
         {
             deleteBooks(id) {
                 this.axios
-                    .delete('http://php.mybooksvue.laravel.pri/api/books/${id}')
+                    .delete('/api/books/${id}')
                     .then(response => {
                         let i = this.Books.map(item => item.id).indexOf(id);
                         this.Books.splice(i, 1)
                     });
             },
             addNewbook() {
-                window.location.href = '/books/new';
+                this.$router.push({
+                    name:'NewBooks'
+                });
+            },
+            EditBooks(id){
+                this.$router.push({
+                    name:'EditBooks',
+                    params:{
+                        id:id
+                    }
+                });
             }
         }
 }

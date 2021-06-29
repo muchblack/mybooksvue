@@ -32,6 +32,7 @@ export default {
         },
         {
             path: '/books/new',
+            name: 'NewBooks',
             components:
                 {
                     default: NewBooks,
@@ -43,6 +44,7 @@ export default {
         },
         {
             path: '/books/:id',
+            name: 'EditBooks',
             components:
                 {
                     default: EditBooks,

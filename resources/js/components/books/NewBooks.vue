@@ -94,12 +94,12 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/category/parent/')
+            .get('/api/category/parent/')
             .then(response => {
                 this.MainCategories = response.data;
             });
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/publisher/')
+            .get('/api/publisher/')
             .then(response => {
                 this.Publishers = response.data;
             });
@@ -109,7 +109,7 @@ export default {
         "Books.main_category": function (value) {
             console.log(value)
             this.axios
-                .get(`http://php.mybooksvue.laravel.pri/api/category/parent/${value}`)
+                .get(`api/category/parent/${value}`)
                 .then(response => {
                     this.SubCategories = response.data;
                 });

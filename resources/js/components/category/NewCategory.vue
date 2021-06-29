@@ -38,7 +38,7 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/category/parent/')
+            .get('/api/category/parent/')
             .then(response => {
                 this.Parents = response.data;
             });
@@ -47,7 +47,7 @@ export default {
         {
             addCategory(){
                 this.axios
-                    .post('http://php.mybooksvue.laravel.pri/api/category/',this.Category)
+                    .post('/api/category/',this.Category)
                     .then(response => (
                         this.$router.push({name:'category'})
                 ))

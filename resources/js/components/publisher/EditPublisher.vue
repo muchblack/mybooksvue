@@ -21,7 +21,7 @@ export default {
     },
     created(){
         this.axios
-            .get(`http://php.mybooksvue.laravel.pri/api/publisher/${this.$route.params.id}`)
+            .get(`/api/publisher/${this.$route.params.id}`)
             .then(response => {
                 this.Publishers = response.data
             });
@@ -31,7 +31,7 @@ export default {
             editPublisher()
             {
                 this.axios
-                    .patch(`http://php.mybooksvue.laravel.pri/api/publisher/${this.$route.params.id}`,this.Publishers)
+                    .patch(`/api/publisher/${this.$route.params.id}`,this.Publishers)
                     .then(response => (
                         this.$router.push({
                             name:'publishers'

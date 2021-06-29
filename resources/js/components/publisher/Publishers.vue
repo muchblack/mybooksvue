@@ -36,7 +36,7 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/publisher')
+            .get('/api/publisher')
             .then(response => {
                 this.Publishers = response.data;
             });

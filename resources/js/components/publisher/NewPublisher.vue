@@ -23,7 +23,7 @@ export default {
         {
             addPublisher(){
                 this.axios
-                    .post('http://php.mybooksvue.laravel.pri/api/publisher/',this.Publishers)
+                    .post('/api/publisher/',this.Publishers)
                     .then(response => (
                         this.$router.push({
                             name:'publishers'

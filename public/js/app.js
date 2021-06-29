@@ -17956,7 +17956,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/books').then(function (response) {
+    this.axios.get('/api/books').then(function (response) {
       _this.Books = response.data;
     });
   },
@@ -17964,7 +17964,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteBooks: function deleteBooks(id) {
       var _this2 = this;
 
-      this.axios["delete"]('http://php.mybooksvue.laravel.pri/api/books/${id}').then(function (response) {
+      this.axios["delete"]('/api/books/${id}').then(function (response) {
         var i = _this2.Books.map(function (item) {
           return item.id;
         }).indexOf(id);
@@ -17973,7 +17973,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addNewbook: function addNewbook() {
-      window.location.href = '/books/new';
+      this.$router.push({
+        name: 'NewBooks'
+      });
+    },
+    EditBooks: function EditBooks(id) {
+      this.$router.push({
+        name: 'EditBooks',
+        params: {
+          id: id
+        }
+      });
     }
   }
 });
@@ -18021,10 +18031,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/category/parent/').then(function (response) {
+    this.axios.get('/api/category/parent/').then(function (response) {
       _this.MainCategories = response.data;
     });
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/publisher/').then(function (response) {
+    this.axios.get('/api/publisher/').then(function (response) {
       _this.Publishers = response.data;
     });
   },
@@ -18033,7 +18043,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       console.log(value);
-      this.axios.get("http://php.mybooksvue.laravel.pri/api/category/parent/".concat(value)).then(function (response) {
+      this.axios.get("api/category/parent/".concat(value)).then(function (response) {
         _this2.SubCategories = response.data;
       });
     }
@@ -18078,7 +18088,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/category/').then(function (response) {
+    this.axios.get('/api/category/').then(function (response) {
       _this.Categories = response.data;
     });
   },
@@ -18123,10 +18133,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/category/parent/').then(function (response) {
+    this.axios.get('/api/category/parent/').then(function (response) {
       _this.Parents = response.data;
     });
-    this.axios.get("http://php.mybooksvue.laravel.pri/api/category/".concat(this.$route.params.id)).then(function (response) {
+    this.axios.get("/api/category/".concat(this.$route.params.id)).then(function (response) {
       _this.Category = response.data;
     });
   },
@@ -18134,7 +18144,7 @@ __webpack_require__.r(__webpack_exports__);
     editCategory: function editCategory() {
       var _this2 = this;
 
-      this.axios.patch("http://php.mybooksvue.laravel.pri/api/category/".concat(this.$route.params.id), this.Category).then(function (response) {
+      this.axios.patch("/api/category/".concat(this.$route.params.id), this.Category).then(function (response) {
         return _this2.$router.push({
           name: 'category'
         });
@@ -18171,7 +18181,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/category/parent/').then(function (response) {
+    this.axios.get('/api/category/parent/').then(function (response) {
       _this.Parents = response.data;
     });
   },
@@ -18179,7 +18189,7 @@ __webpack_require__.r(__webpack_exports__);
     addCategory: function addCategory() {
       var _this2 = this;
 
-      this.axios.post('http://php.mybooksvue.laravel.pri/api/category/', this.Category).then(function (response) {
+      this.axios.post('/api/category/', this.Category).then(function (response) {
         return _this2.$router.push({
           name: 'category'
         });
@@ -18232,7 +18242,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://php.mybooksvue.laravel.pri/api/publisher/".concat(this.$route.params.id)).then(function (response) {
+    this.axios.get("/api/publisher/".concat(this.$route.params.id)).then(function (response) {
       _this.Publishers = response.data;
     });
   },
@@ -18240,7 +18250,7 @@ __webpack_require__.r(__webpack_exports__);
     editPublisher: function editPublisher() {
       var _this2 = this;
 
-      this.axios.patch("http://php.mybooksvue.laravel.pri/api/publisher/".concat(this.$route.params.id), this.Publishers).then(function (response) {
+      this.axios.patch("/api/publisher/".concat(this.$route.params.id), this.Publishers).then(function (response) {
         return _this2.$router.push({
           name: 'publishers'
         });
@@ -18277,7 +18287,7 @@ __webpack_require__.r(__webpack_exports__);
     addPublisher: function addPublisher() {
       var _this = this;
 
-      this.axios.post('http://php.mybooksvue.laravel.pri/api/publisher/', this.Publishers).then(function (response) {
+      this.axios.post('/api/publisher/', this.Publishers).then(function (response) {
         return _this.$router.push({
           name: 'publishers'
         });
@@ -18313,7 +18323,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://php.mybooksvue.laravel.pri/api/publisher').then(function (response) {
+    this.axios.get('/api/publisher').then(function (response) {
       _this.Publishers = response.data;
     });
   },
@@ -18550,12 +18560,6 @@ var _hoisted_4 = {
   scope: "row"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "btn btn-primary"
-}, "修改", -1
-/* HOISTED */
-);
-
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
@@ -18581,7 +18585,12 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.set_no), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      "class": "btn btn-primary",
+      onClick: _cache[2] || (_cache[2] = function ($event) {
+        return $options.EditBooks($data.Books.id);
+      })
+    }, "修改"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
       onClick: function onClick($event) {
         return $options.deleteBooks(Book.id);
       },
@@ -20044,6 +20053,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }, {
     path: '/books/new',
+    name: 'NewBooks',
     components: {
       "default": _components_books_NewBooks__WEBPACK_IMPORTED_MODULE_3__.default,
       Nav: _components_Nav__WEBPACK_IMPORTED_MODULE_1__.default
@@ -20053,6 +20063,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }, {
     path: '/books/:id',
+    name: 'EditBooks',
     components: {
       "default": _components_books_EditBooks__WEBPACK_IMPORTED_MODULE_4__.default,
       Nav: _components_Nav__WEBPACK_IMPORTED_MODULE_1__.default

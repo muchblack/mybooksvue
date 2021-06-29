@@ -40,7 +40,7 @@ export default {
     },
     created() {
         this.axios
-            .get('http://php.mybooksvue.laravel.pri/api/category/')
+            .get('/api/category/')
             .then(response => {
                 this.Categories = response.data;
             });

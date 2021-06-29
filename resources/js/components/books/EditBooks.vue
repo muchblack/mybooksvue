@@ -2,14 +2,14 @@
     <div>
         <h3>修改書籍</h3>
     </div>
-    <form @submit.prevent="editNewBook">
+    <form @submit.prevent="editBook">
         <div class="form-group">
             <label for="books_ISBN">ISBN13碼編號</label>
-            <input type="text" class="form-control" v-model="Books.books_ISBN">
+            <input type="text" class="form-control" v-model="Books.books_ISBN" disabled>
         </div>
         <div class="form-group">
             <label for="books_ISBN13">ISBN13碼編號</label>
-            <input type="text" class="form-control" v-model="Books.books_ISBN13">
+            <input type="text" class="form-control" v-model="Books.books_ISBN13" disabled>
         </div>
         <div class="form-group">
             <label for="books_category">書本主分類</label>
@@ -23,7 +23,9 @@
         <div class="form-group">
             <label for="books_category">書本次分類</label>
             <select v-model="Books.sub_category">
-
+                <option v-for="SubCategory in SubCategories" v-bind:value="SubCategory.id">
+                    {{ SubCategory.book_category_name }}
+                </option>
             </select>
         </div>
         <div class="form-group">
@@ -32,7 +34,7 @@
         </div>
         <div class="form-group">
             <label for="books_publisher">書本出版社</label>
-            <select v-model="Books.publisher">
+            <select v-model="Books.books_publisher">
                 <option>請選擇</option>
                 <option v-for="Publisher in Publishers" v-bind:value="Publisher.id">
                     {{ Publisher.publisher_name }}
@@ -62,8 +64,8 @@
         <div class="form-group">
             <label for="is_audit">是否為18+</label>
             <br/>
-            <input type="radio" v-model="Books.is_audit" value="Y">是
-            <input type="radio" v-model="Books.is_audit" value="N">否
+            <input type="radio" v-model="Books.is_adult" value="Y">是
+            <input type="radio" v-model="Books.is_adult" value="N">否
         </div>
         <div class="form-group">
             <label for="is_set">是否為套裝書</label>
@@ -73,7 +75,7 @@
         </div>
         <div class="form-group">
             <label for="set_no">集數</label>
-            <input type="password" class="form-control" v-model="Books.set_no">
+            <input type="text" class="form-control" v-model="Books.set_no">
         </div>
         <button class="btn btn-primary">送出</button>
     </form>
@@ -94,7 +96,7 @@ export default {
         this.axios
             .get(`/api/books/${this.$route.params.id}`)
             .then(response => {
-                this.Category = response.data
+                this.Books = response.data
             });
         this.axios
             .get('/api/category/parent/')
@@ -110,18 +112,17 @@ export default {
     },
     watch: {
         "Books.main_category": function (value) {
-            console.log(value)
             this.axios
-                .get(`api/category/parent/${value}`)
+                .get(`/api/category/parent/${value}`)
                 .then(response => {
                     this.SubCategories = response.data;
                 });
         }
     },
-    ethods: {
-        editNewBook() {
+    methods: {
+        editBook() {
             this.axios
-                .post('http://php.mybooksvue.laravel.pri/api/books/', this.Books)
+                .patch(`/api/books/${this.$route.params.id}`,this.Books)
                 .then(response => (
                     this.$router.push({
                         name: 'Books'

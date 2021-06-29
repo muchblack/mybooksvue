@@ -64,8 +64,8 @@
         <div class="form-group">
             <label for="is_audit">是否為18+</label>
             <br/>
-            <input type="radio" v-model="Books.is_audit" value="Y">是
-            <input type="radio" v-model="Books.is_audit" value="N">否
+            <input type="radio" v-model="Books.is_adult" value="Y">是
+            <input type="radio" v-model="Books.is_adult" value="N">否
         </div>
         <div class="form-group">
             <label for="is_set">是否為套裝書</label>

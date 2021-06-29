@@ -26,7 +26,7 @@
                 <td>{{Book.books_name}}</td>
                 <td>{{Book.set_no}}</td>
                 <td>
-                    <button class="btn btn-primary" @click="EditBooks(Books.id)">修改</button>
+                    <button class="btn btn-primary" @click="EditBooks(Book.id)">修改</button>
                     <button @click="deleteBooks(Book.id)" class="btn btn-danger">刪除</button>
                 </td>
             </tr>

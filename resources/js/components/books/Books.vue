@@ -13,20 +13,18 @@
                 <th scope="col">作者</th>
                 <th scope="col">書名</th>
                 <th scope="col">集數</th>
-                <th scope="col">出版社</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="Book in Books" :key="Book.id">
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
+                <th scope="row">{{Book.id}}</th>
+                <td>{{Book.books_ISBN}}</td>
+                <td>{{Book.books_category}}</td>
+                <td>{{Book.books_publisher}}</td>
+                <td>{{Book.books_author}}</td>
+                <td>{{Book.books_name}}</td>
+                <td>{{Book.set_no}}</td>
                 <td>
                     <button class="btn btn-primary">修改</button>
                     <button @click="deleteBooks(Book.id)" class="btn btn-danger">刪除</button>

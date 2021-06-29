@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\PublisherController;
 Route::middleware('api')->group(function (){
     //獨立新增路由
     Route::get('category/parent/',[CategoryController::class,'getParentCategory']);
+    Route::get('category/parent/{id}',[CategoryController::class,'getChildrenCategory']);
 
     //對應的Resource路由要在最下方解析
     Route::resource('books',BooksController::class);

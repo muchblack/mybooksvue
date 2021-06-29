@@ -88,7 +88,6 @@ export default {
             meta: {
                 title: 'EditCategory'
             },
-            alias: '/categories',
         },
         {
             path: '/publishers',

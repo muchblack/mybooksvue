@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-import { createApp } from "vue";
+import { createApp, watch } from "vue";
 import { createRouter, createWebHistory } from 'vue-router';
 import Routes from './route.js';
 import axios from "axios";

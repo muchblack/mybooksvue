@@ -34,6 +34,14 @@ class CategoryController extends Controller
         return $parent;
     }
 
+    //取得該母層級下的所有分類
+    public function getChildrenCategory($id)
+    {
+        $children = Categories::where('book_category_parent_id',$id)->get()->toArray();
+
+        return $children;
+    }
+
     //新增分類-動作
     public function store(Request $request)
     {

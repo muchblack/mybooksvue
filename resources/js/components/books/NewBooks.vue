@@ -2,78 +2,131 @@
     <div>
         <h3>新增書籍</h3>
     </div>
-    <div class="form-group">
-        <label for="books_ISBN">ISBN13碼編號</label>
-        <input type="text" class="form-control" v-model="Books.books_ISBN">
-    </div>
-    <div class="form-group">
-        <label for="books_ISBN13">ISBN13碼編號</label>
-        <input type="text" class="form-control" id="books_ISBN13" name="books_ISBN13">
-    </div>
-    <div class="form-group">
-        <label for="books_category">書本分類</label>
-        <select name="books_category" id="books_category"></select>
-    </div>
-    <div class="form-group">
-        <label for="books_author">書本作者</label>
-        <input type="text" class="form-control" id="books_author" name="books_author">
-    </div>
-    <div class="form-group">
-        <label for="books_publisher">書本出版社</label>
-        <select name="books_publisher" id="books_publisher"></select>
-    </div>
-    <div class="form-group">
-        <label for="books_name">書本名稱</label>
-        <input type="text" class="form-control" id="books_name" name="books_name">
-    </div>
-    <div class="form-group">
-        <label for="books_sub_title">書本副標</label>
-        <input type="text" class="form-control" id="books_sub_title" name="books_sub_title">
-    </div>
-    <div class="form-group">
-        <label for="books_desc">書本簡介</label>
-        <input type="text" class="form-control" id="books_desc" name="books_desc">
-    </div>
-    <div class="form-group">
-        <label for="books_ver">書本出版版本號</label>
-        <input type="text" class="form-control" id="books_ver" name="books_ver">
-    </div>
-    <div class="form-group">
-        <label for="books_var_date">書籍出版日</label>
-        <input type="text" class="form-control" id="books_var_date" name="books_var_date">
-    </div>
-    <div class="form-group">
-        <label for="is_audit">是否為18+</label>
-        <br/>
-        <input type="radio" name="is_audit" id="is_audit_Y" value="Y">是
-        <input type="radio" name="is_audit" id="is_audit_N" value="Y">否
-    </div>
-    <div class="form-group">
-        <label for="is_set">是否為套裝書</label>
-        <br/>
-        <input type="radio" name="is_set" id="is_set_Y" value="Y">是
-        <input type="radio" name="is_set" id="is_set_N" value="Y">否
-    </div>
-    <div class="form-group">
-        <label for="set_no">集數</label>
-        <input type="password" class="form-control" id="set_no" name="set_no">
-    </div>
-    <button class="btn btn-primary">送出</button>
+    <form @submit.prevent="addNewBook">
+        <div class="form-group">
+            <label for="books_ISBN">ISBN碼編號</label>
+            <input type="text" class="form-control" v-model="Books.books_ISBN">
+        </div>
+        <div class="form-group">
+            <label for="books_ISBN13">ISBN13碼編號</label>
+            <input type="text" class="form-control" v-model="Books.books_ISBN13">
+        </div>
+        <div class="form-group">
+            <label for="books_category">書本主分類</label>
+            <select v-model="Books.main_category">
+                <option> 請選擇</option>
+                <option v-for="MainCategory in MainCategories" v-bind:value="MainCategory.id">
+                    {{ MainCategory.book_category_name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="books_category">書本次分類</label>
+            <select v-model="Books.sub_category">
+                <option v-for="SubCategory in SubCategories" v-bind:value="SubCategory.id">
+                    {{ SubCategory.book_category_name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="books_author">書本作者</label>
+            <input type="text" class="form-control" v-model="Books.books_author">
+        </div>
+        <div class="form-group">
+            <label for="books_publisher">書本出版社</label>
+            <select v-model="Books.books_publisher">
+                <option>請選擇</option>
+                <option v-for="Publisher in Publishers" v-bind:value="Publisher.id">
+                    {{ Publisher.publisher_name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="books_name">書本名稱</label>
+            <input type="text" class="form-control" v-model="Books.books_name">
+        </div>
+        <div class="form-group">
+            <label for="books_sub_title">書本副標</label>
+            <input type="text" class="form-control" v-model="Books.books_sub_title">
+        </div>
+        <div class="form-group">
+            <label for="books_desc">書本簡介</label>
+            <textarea v-model="Books.books_desc"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="books_ver">書本出版版本號</label>
+            <input type="text" class="form-control" v-model="Books.books_ver">
+        </div>
+        <div class="form-group">
+            <label for="books_var_date">書籍出版日</label>
+            <input type="text" class="form-control" v-model="Books.books_var_date">
+        </div>
+        <div class="form-group">
+            <label for="is_audit">是否為18+</label>
+            <br/>
+            <input type="radio" v-model="Books.is_audit" value="Y">是
+            <input type="radio" v-model="Books.is_audit" value="N">否
+        </div>
+        <div class="form-group">
+            <label for="is_set">是否為套裝書</label>
+            <br/>
+            <input type="radio" v-model="Books.is_set" value="Y">是
+            <input type="radio" v-model="Books.is_set" value="N">否
+        </div>
+        <div class="form-group">
+            <label for="set_no">集數</label>
+            <input type="text" class="form-control" v-model="Books.set_no">
+        </div>
+        <button class="btn btn-primary">送出</button>
+    </form>
 </template>
 
 <script>
 export default {
     name: "NewBooks",
-    data(){
+    data() {
         return {
-            Category: [],
+            MainCategories: [],
+            SubCategories: [],
             Publishers: [],
             Books: {}
         }
     },
-    created()
-    {
+    created() {
+        this.axios
+            .get('http://php.mybooksvue.laravel.pri/api/category/parent/')
+            .then(response => {
+                this.MainCategories = response.data;
+            });
+        this.axios
+            .get('http://php.mybooksvue.laravel.pri/api/publisher/')
+            .then(response => {
+                this.Publishers = response.data;
+            });
 
+    },
+    watch: {
+        "Books.main_category": function (value) {
+            console.log(value)
+            this.axios
+                .get(`http://php.mybooksvue.laravel.pri/api/category/parent/${value}`)
+                .then(response => {
+                    this.SubCategories = response.data;
+                });
+        }
+    },
+    methods:{
+        addNewBook(){
+            this.axios
+                .post('http://php.mybooksvue.laravel.pri/api/books/',this.Books)
+                .then(response => (
+                    this.$router.push({
+                        name:'Books'
+                    })
+                ))
+                .catch(err => console.log(err))
+                .finally(() => this.loading = false)
+        }
     }
 }
 </script>

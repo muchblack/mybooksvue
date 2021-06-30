@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Books;
+use App\Models\Categories;
+use App\Models\Publishers;
 
 class BooksController extends Controller
 {
@@ -12,6 +14,14 @@ class BooksController extends Controller
     public function index()
     {
         $books = Books::all()->toArray();
+
+        foreach ($books as &$item)
+        {
+            $categories = json_decode($item['books_category']);
+            $item['main_category'] = Categories::find($categories->parent)->book_category_name;
+            $item['sub_category'] = Categories::find($categories->children)->book_category_name;
+            $item['publisher'] = Publishers::find($item['books_publisher'])->publisher_name;
+        }
 
         return array_reverse($books);
     }

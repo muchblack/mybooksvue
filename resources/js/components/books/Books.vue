@@ -20,8 +20,8 @@
             <tr v-for="Book in Books" :key="Book.id">
                 <th scope="row">{{Book.id}}</th>
                 <td>{{Book.books_ISBN}}</td>
-                <td>{{Book.books_category}}</td>
-                <td>{{Book.books_publisher}}</td>
+                <td>{{Book.main_category}} > {{Book.sub_category}}</td>
+                <td>{{Book.publisher}}</td>
                 <td>{{Book.books_author}}</td>
                 <td>{{Book.books_name}}</td>
                 <td>{{Book.set_no}}</td>

@@ -18088,7 +18088,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       console.log(value);
-      this.axios.get("api/category/parent/".concat(value)).then(function (response) {
+      this.axios.get("/api/category/parent/".concat(value)).then(function (response) {
         _this2.SubCategories = response.data;
       });
     }
@@ -18097,7 +18097,7 @@ __webpack_require__.r(__webpack_exports__);
     addNewBook: function addNewBook() {
       var _this3 = this;
 
-      this.axios.post('http://php.mybooksvue.laravel.pri/api/books/', this.Books).then(function (response) {
+      this.axios.post('/api/books/', this.Books).then(function (response) {
         return _this3.$router.push({
           name: 'Books'
         });
@@ -18620,9 +18620,9 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.books_ISBN), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.books_category), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.main_category) + " > " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.sub_category), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.books_publisher), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.publisher), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(Book.books_author), 1
     /* TEXT */
@@ -20105,6 +20105,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   routes: [{
+    path: '/',
+    components: {
+      "default": _components_books_Books__WEBPACK_IMPORTED_MODULE_2__.default,
+      Nav: _components_Nav__WEBPACK_IMPORTED_MODULE_1__.default
+    },
+    name: 'index',
+    meta: {
+      title: 'index'
+    }
+  }, {
     path: '/books',
     components: {
       "default": _components_books_Books__WEBPACK_IMPORTED_MODULE_2__.default,

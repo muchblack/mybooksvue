@@ -19,6 +19,17 @@ import Users from './components/users/Users';
 export default {
     routes: [
         {
+            path:'/',
+            components: {
+                default: Books,
+                Nav: Nav
+            },
+            name: 'index',
+            meta: {
+                title: 'index'
+            }
+        },
+        {
             path: '/books',
             components:
                 {

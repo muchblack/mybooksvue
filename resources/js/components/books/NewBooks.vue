@@ -109,7 +109,7 @@ export default {
         "Books.main_category": function (value) {
             console.log(value)
             this.axios
-                .get(`api/category/parent/${value}`)
+                .get(`/api/category/parent/${value}`)
                 .then(response => {
                     this.SubCategories = response.data;
                 });
@@ -118,7 +118,7 @@ export default {
     methods:{
         addNewBook(){
             this.axios
-                .post('http://php.mybooksvue.laravel.pri/api/books/',this.Books)
+                .post('/api/books/',this.Books)
                 .then(response => (
                     this.$router.push({
                         name:'Books'

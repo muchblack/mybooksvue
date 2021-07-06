@@ -16,7 +16,7 @@
                 <router-link :class="['nav-link']" active-class="active" to="/mybooks">我的書櫃</router-link>
             </li>
         </ul>
-
+    <p v-if=" isLogin "> HI, {{ userInfo.name }}, Your No is {{ userInfo.id }} <a href="#" @click="logout()">登出</a>  </p>
     <!--            <router-link to="/categories" custom v-slot="{ href, route, navigate, isActive, isExactActive }">-->
     <!--                <li :class="['nav-item',isActive && 'active']" >-->
     <!--                    <a :href="href" @click="navigate">分類管理</a>-->
@@ -27,7 +27,23 @@
 
 <script>
 export default {
-    name: "nav"
+    name: "nav",
+    data(){
+        return {
+            isLogin: false,
+            userInfo: {},
+        }
+    },
+    created(){
+        this.isLogin = this.$store.state.isLogin;
+        this.userInfo = this.$store.state.userInfo;
+    },
+    methods:{
+        logout(){
+            this.$store.dispatch('userLogout');
+            this.$router.push('/');
+        }
+    }
 }
 </script>
 

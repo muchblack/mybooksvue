@@ -27,7 +27,10 @@
     },
     "dependencies": {
         "vue-axios": "^3.2.4",
+        "vue-cookies": "^1.7.4",
         "vue-router": "^4.0.10",
-        "vuex": "^4.0.2"
+        "vue3-cookies": "^1.0.1",
+        "vuex": "^4.0.2",
+        "vuex-persistedstate": "*"
     }
 }

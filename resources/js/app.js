@@ -7,10 +7,11 @@
 require('./bootstrap');
 
 import { createApp, watch } from "vue";
-import { createRouter, createWebHistory } from 'vue-router';
 import Routes from './route.js';
+import store from './store/user';
 import axios from "axios";
 import VueAxios from "vue-axios";
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,12 +32,8 @@ import VueAxios from "vue-axios";
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes: Routes.routes,
-})
-
 const app = createApp({});
-app.use(router)
 app.use(VueAxios,axios)
+app.use(store)
+app.use(Routes)
 app.mount("#app")

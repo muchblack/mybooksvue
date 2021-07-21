@@ -14,9 +14,10 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $user = Members::where('member_name',$request->input('member_name'))->first()->toArray();
+        $user = Members::where('member_name',$request->input('member_name'))->first();
         if($user)
         {
+            $user = $user->toArray();
             if(Hash::check($request->input('member_pwd'), $user['member_pwd'])){
                 return response(json_encode($user),200);
             }

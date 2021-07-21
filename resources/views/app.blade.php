@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+@include('layout.header')
 
-    <!--1、 引入支持 Bootstrap 的 CSS 样式文件 -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<body id="page-top">
+    <div id="app">
+        <div id="body">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
 
+                <router-view class="view nav" name="Nav"></router-view>
 
-</head>
-<body>
-<div id="app">
-    <div id="navbar">
-        <router-view class="view nav" name="Nav"></router-view>
-    </div>
-    <div id="body">
-        <div class="container">
-            <router-view></router-view>
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <router-view name="Topbar"></router-view>
+
+                    <div id='content' class="container">
+                        <router-view></router-view>
+                    </div>
+                </div>
+                <!-- End of Content Wrapper -->
+            </div> <!-- End of Wrapper -->
         </div>
     </div>
-</div>
-
-<!-- 2、引入支持Vue框架和Vue组件的app.js文件 -->
-<script src="{{ asset('js/app.js') }}"></script>
 </body>
+
+@include('layout.footer')
 </html>

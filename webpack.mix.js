@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+// const tailwindcss = require('tailwindcss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,4 +13,17 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .styles([
+        'resources/asset/sb-admin-2.min.css'
+    ], 'public/css/sb.css');
+
+
+
+// mix.js('resources/js/app.js', 'public/js')
+//     .vue()
+//     .sass('resources/sass/app.scss', 'public/css')
+//     .options({
+//         processCssUrls: false,
+//         postCss: [tailwindcss('./tailwind.config.js')]
+//     });

@@ -1,28 +1,40 @@
 <template>
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <router-link :class="['nav-link']" active-class="active" to="/books">書籍管理</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :class="['nav-link']" active-class="active" to="/categories">分類管理</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :class="['nav-link']" active-class="active" to="/publishers">出版社管理</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :class="['nav-link']" active-class="active" to="/users">使用者管理</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :class="['nav-link']" active-class="active" to="/mybooks">我的書櫃</router-link>
-            </li>
-        </ul>
-    <p v-if=" isLogin "> HI, {{ userInfo.name }}, Your No is {{ userInfo.id }} <a href="#" @click="logout()">登出</a>  </p>
-    <!--            <router-link to="/categories" custom v-slot="{ href, route, navigate, isActive, isExactActive }">-->
-    <!--                <li :class="['nav-item',isActive && 'active']" >-->
-    <!--                    <a :href="href" @click="navigate">分類管理</a>-->
-    <!--                </li>-->
-    <!--            </router-link>-->
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">書籍管理後台</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/dashboard"><i class="fas fa-fw fa-folder"></i>後台首頁</router-link>
+        </li>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/books"><i class="fas fa-fw fa-book"></i>書籍管理</router-link>
+        </li>
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/categories"><i class="fas fa-fw fa-file-contract"></i>分類管理</router-link>
+        </li>
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/publishers"><i class="fas fa-fw fa-folder"></i>出版社管理</router-link>
+        </li>
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/users"><i class="fas fa-fw fa-folder"></i>使用者管理</router-link>
+        </li>
+        <li class="nav-item">
+            <router-link :class="['nav-link']" active-class="active" to="/mybooks"><i class="fas fa-fw fa-folder"></i>我的書櫃</router-link>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
 </template>
 
 <script>

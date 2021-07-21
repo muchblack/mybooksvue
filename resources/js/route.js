@@ -3,8 +3,11 @@ import store from './store/user';
 
 import Login from './pages/Login';
 import Nav from './components/Nav';
+import Topbar from "./components/Topbar";
+import Dashboard from "./components/Dashboard";
 
 import Books from './components/books/Books';
+import BooksIndex from "./components/books/BooksIndex";
 import NewBooks from "./components/books/NewBooks";
 import EditBooks from "./components/books/EditBooks";
 
@@ -18,6 +21,9 @@ import EditPublisher from "./components/publisher/EditPublisher";
 
 import Mybooks from './components/mybooks/Mybooks';
 import Users from './components/users/Users';
+import CateIndex from "./components/category/CateIndex";
+import PublishIndex from "./components/publisher/PublishIndex";
+
 
 const route_list = [
     {
@@ -31,119 +37,101 @@ const route_list = [
         }
     },
     {
+        path: '/dashboard',
+        components:
+            {
+                default: Dashboard,
+                Topbar: Topbar,
+                Nav:Nav
+            }
+    },
+    {
         path: '/books',
+        name: 'Books',
         components:
             {
                 default: Books,
+                Topbar: Topbar,
                 Nav:Nav
             },
-        name: 'Books',
-        meta: {
-            title: 'Books'
-        },
-    },
-    {
-        path: '/books/new',
-        name: 'NewBooks',
-        components:
+        children: [
             {
-                default: NewBooks,
-                Nav:Nav
+                path: '',
+                name: 'BookIndex',
+                component: BooksIndex
             },
-        meta: {
-            title: 'NewBookAdd'
-        }
-    },
-    {
-        path: '/books/:id',
-        name: 'EditBooks',
-        components:
             {
-                default: EditBooks,
-                Nav:Nav
+                path: 'new',
+                name: 'NewBooks',
+                component: NewBooks
             },
-        meta: {
-            title: 'EditBooks'
-        }
+            {
+                path: ':id',
+                name: 'EditBooks',
+                component: EditBooks
+            }
+        ],
     },
     {
         path: '/categories',
+        name: 'category',
         components:
             {
                 default: Categories,
+                Topbar: Topbar,
                 Nav:Nav
             },
-        name: 'category',
-        meta: {
-            title: 'Category'
-        },
-    },
-    {
-        path: '/categories/new',
-        components:
+        children:[
             {
-                default: NewCategory,
-                Nav:Nav
+                path: '',
+                name: 'CateIndex',
+                component: CateIndex
             },
-        name: 'NewCategory',
-        meta: {
-            title: 'NewCategory'
-        },
-        alias: '/categories',
-    },
-    {
-        path: '/categories/:id',
-        components:
             {
-                default: EditCategory,
-                Nav:Nav
+                path: 'new',
+                name: 'NewCategory',
+                component: NewCategory
             },
-        name: 'EditCategory',
-        meta: {
-            title: 'EditCategory'
-        },
+            {
+                path: ':id',
+                name: 'EditCategory',
+                component: EditCategory,
+            }
+        ]
     },
     {
         path: '/publishers',
+        name: 'publishers',
         components:
             {
                 default: Publishers,
+                Topbar: Topbar,
                 Nav:Nav
             },
-        name: 'publishers',
-        meta: {
-            title: 'Category'
-        },
-    },
-    {
-        path: '/publishers/new',
-        components:
+        children:[
             {
-                default: NewPublisher,
-                Nav:Nav
+                path: '',
+                name: 'PublishIndex',
+                component: PublishIndex
             },
-        name: 'NewPublisher',
-        meta: {
-            title: 'NewPublisher'
-        }
-    },
-    {
-        path: '/publishers/:id',
-        components:
             {
-                default: EditPublisher,
-                Nav:Nav
+                path: 'new',
+                name: 'NewPublisher',
+                component: NewPublisher,
             },
-        name: 'EditPublisher',
-        meta: {
-            title: 'EditPublisher'
-        }
+            {
+                path: ':id',
+                name: 'EditPublisher',
+                component: EditPublisher,
+            }
+        ]
     },
     {
         path: '/mybooks',
         components:
             {
                 default: Mybooks,
+                Topbar: Topbar,
                 Nav:Nav
             },
         name: 'Mybooks',
@@ -156,14 +144,14 @@ const route_list = [
         components:
             {
                 default: Users,
+                Topbar: Topbar,
                 Nav:Nav
             },
         name: 'Users',
         meta: {
             title: 'Users'
         },
-    }
-
+    },
 ]
 
 const router = createRouter({
@@ -173,9 +161,12 @@ const router = createRouter({
 )
 router.beforeEach((to, from, next)=>{
 
-    if(!store.state.isLogin && to.path != '/')
+    if(to.path != '/test')
     {
-        next('/');
+        if(!store.state.isLogin && to.path != '/')
+        {
+            next('/');
+        }
     }
     next();
 })

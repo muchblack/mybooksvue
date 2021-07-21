@@ -78,6 +78,7 @@
             <input type="text" class="form-control" v-model="Books.set_no">
         </div>
         <button class="btn btn-primary">送出</button>
+        <button class="btn btn-primary">回上一頁</button>
     </form>
 </template>
 

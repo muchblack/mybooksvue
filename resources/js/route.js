@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import store from './store/user';
 
 import Login from './pages/Login';
-import Nav from './components/Nav';
+import NavBar from './components/NavBar';
 import Topbar from "./components/Topbar";
 import Dashboard from "./components/Dashboard";
 
@@ -42,7 +42,7 @@ const route_list = [
             {
                 default: Dashboard,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             }
     },
     {
@@ -52,7 +52,7 @@ const route_list = [
             {
                 default: Books,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             },
         children: [
             {
@@ -79,7 +79,7 @@ const route_list = [
             {
                 default: Categories,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             },
         children:[
             {
@@ -106,7 +106,7 @@ const route_list = [
             {
                 default: Publishers,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             },
         children:[
             {
@@ -132,7 +132,7 @@ const route_list = [
             {
                 default: Mybooks,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             },
         name: 'Mybooks',
         meta: {
@@ -145,7 +145,7 @@ const route_list = [
             {
                 default: Users,
                 Topbar: Topbar,
-                Nav:Nav
+                NavBar: NavBar
             },
         name: 'Users',
         meta: {

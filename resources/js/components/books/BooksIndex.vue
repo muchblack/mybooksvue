@@ -33,7 +33,6 @@
             </tbody>
         </table>
     </div>
-    {{ isLogin }}
 </template>
 
 <script>

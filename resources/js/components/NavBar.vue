@@ -39,7 +39,7 @@
 
 <script>
 export default {
-    name: "nav",
+    name: "NavBar",
     data(){
         return {
             isLogin: false,

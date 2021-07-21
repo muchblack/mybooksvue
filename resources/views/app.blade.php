@@ -9,7 +9,7 @@
             <!-- Page Wrapper -->
             <div id="wrapper">
 
-                <router-view class="view nav" name="Nav"></router-view>
+                <router-view name="NavBar"></router-view>
 
                 <!-- Content Wrapper -->
                 <div id="content-wrapper" class="d-flex flex-column">

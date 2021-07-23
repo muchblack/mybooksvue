@@ -20,6 +20,7 @@ class MemberSeeder extends Seeder
             'member_name'=> 'root',
             'member_pwd' => Hash::make('1qaz2wsx'),
             'member_email' => 'root@root',
+            'member_type' => '0',
             'is_verify'=>'1',
             'master_flag' => '1',
             'created_at' => date('Y-m-d H:i:s'),

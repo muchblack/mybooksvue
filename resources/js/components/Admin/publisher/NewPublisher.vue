@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Input from "../../pages/Input";
+import Input from "../../../pages/Input";
 export default {
     name: "NewPublisher",
     components: {Input},
@@ -30,7 +30,8 @@ export default {
                     .post('/api/publisher/',this.Publishers)
                     .then(response => (
                         this.$router.push({
-                            name:'publishers'
+                            // name:'publishers'
+                            path: '/admin/publishers/'
                         })
                     ))
                     .catch(err => console.log(err))

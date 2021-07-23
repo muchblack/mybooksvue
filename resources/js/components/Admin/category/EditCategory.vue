@@ -60,7 +60,7 @@ export default {
                     .patch(`/api/category/${this.$route.params.id}`,this.Category)
                     .then(response => (
                         this.$router.push({
-                            name:'category'
+                            path: '/admin/categories'
                         })
                     ))
                     .catch(err => console.log(err))

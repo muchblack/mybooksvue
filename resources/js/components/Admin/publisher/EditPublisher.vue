@@ -34,7 +34,7 @@ export default {
                     .patch(`/api/publisher/${this.$route.params.id}`,this.Publishers)
                     .then(response => (
                         this.$router.push({
-                            name:'publishers'
+                            path: '/admin/publishers'
                         })
                     ))
                     .catch(err => console.log(err))

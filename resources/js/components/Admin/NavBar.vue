@@ -25,9 +25,6 @@
             <router-link :class="['nav-link']" active-class="active" to="/admin/categories"><i class="fas fa-fw fa-file-contract"></i>分類管理</router-link>
         </li>
         <li class="nav-item">
-            <router-link :class="['nav-link']" active-class="active" to="/admin/publishers"><i class="fas fa-fw fa-folder"></i>出版社管理</router-link>
-        </li>
-        <li class="nav-item">
             <router-link :class="['nav-link']" active-class="active" to="/admin/users"><i class="fas fa-fw fa-folder"></i>使用者管理</router-link>
         </li>
     </ul>

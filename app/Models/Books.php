@@ -15,12 +15,13 @@ class Books extends Model
         'books_author' ,
         'books_publisher',
         'books_name'  ,
+        'books_ori_name',
         'books_sub_title' ,
         'books_desc'  ,
         'books_ver'  ,
         'books_var_date' ,
-        'books_is_audit' ,
-        'books_is_set' ,
-        'books_set_no' ,
+        'is_adult' ,
+        'is_set' ,
+        'set_no' ,
     ];
 }

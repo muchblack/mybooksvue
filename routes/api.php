@@ -30,6 +30,9 @@ Route::middleware('api')->group(function (){
     //使用者登入
     Route::post('login',[LoginController::class,'login']);
 
+    //拋出ISBN查詢
+    Route::get('getbooks/{ISBN}', [BooksController::class,'getBooksDetail']);
+
     //對應的Resource路由要在最下方解析
     Route::resource('books',BooksController::class);
     Route::resource('category',CategoryController::class);

@@ -8,8 +8,16 @@
             <input type="text" class="form-control" v-model="Books.books_ISBN" disabled>
         </div>
         <div class="form-group">
-            <label for="books_ISBN13">ISBN13碼編號</label>
-            <input type="text" class="form-control" v-model="Books.books_ISBN13" disabled>
+            <label for="books_name">書本名稱</label>
+            <input type="text" class="form-control" v-model="Books.books_name">
+        </div>
+        <div class="form-group">
+            <label for="books_name">原文名稱</label>
+            <input type="text" class="form-control" v-model="Books.books_ori_name">
+        </div>
+        <div class="form-group">
+            <label for="books_author">書本作者</label>
+            <input type="text" class="form-control" v-model="Books.books_author">
         </div>
         <div class="form-group">
             <label for="books_category">書本主分類</label>
@@ -29,33 +37,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="books_author">書本作者</label>
-            <input type="text" class="form-control" v-model="Books.books_author">
-        </div>
-        <div class="form-group">
             <label for="books_publisher">書本出版社</label>
-            <select v-model="Books.books_publisher">
-                <option>請選擇</option>
-                <option v-for="Publisher in Publishers" v-bind:value="Publisher.id">
-                    {{ Publisher.publisher_name }}
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="books_name">書本名稱</label>
-            <input type="text" class="form-control" v-model="Books.books_name">
-        </div>
-        <div class="form-group">
-            <label for="books_sub_title">書本副標</label>
-            <input type="text" class="form-control" v-model="Books.books_sub_title">
-        </div>
-        <div class="form-group">
-            <label for="books_desc">書本簡介</label>
-            <textarea v-model="Books.books_desc"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="books_ver">書本出版版本號</label>
-            <input type="text" class="form-control" v-model="Books.books_ver">
+            <input type="text" class="form-control" v-model="Books.books_publisher">
         </div>
         <div class="form-group">
             <label for="books_var_date">書籍出版日</label>
@@ -98,18 +81,13 @@ export default {
             .get(`/api/books/${this.$route.params.id}`)
             .then(response => {
                 this.Books = response.data
+                console.log(this.Books.set_no)
             });
         this.axios
             .get('/api/category/parent/')
             .then(response => {
                 this.MainCategories = response.data;
             });
-        this.axios
-            .get('/api/publisher/')
-            .then(response => {
-                this.Publishers = response.data;
-            });
-
     },
     watch: {
         "Books.main_category": function (value) {
@@ -124,11 +102,12 @@ export default {
         editBook() {
             this.axios
                 .patch(`/api/books/${this.$route.params.id}`,this.Books)
-                .then(response => (
+                .then(response => {
+                    // console.log(response.data);
                     this.$router.push({
-                        name: 'Books'
+                        path: '/admin/books'
                     })
-                ))
+                })
                 .catch(err => console.log(err))
                 .finally(() => this.loading = false)
         }

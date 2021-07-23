@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Services\FindBooksService;
 use Illuminate\Http\Request;
 use App\Models\Books;
 use App\Models\Categories;
@@ -20,7 +21,6 @@ class BooksController extends Controller
             $categories = json_decode($item['books_category']);
             $item['main_category'] = Categories::find($categories->parent)->book_category_name;
             $item['sub_category'] = Categories::find($categories->children)->book_category_name;
-            $item['publisher'] = Publishers::find($item['books_publisher'])->publisher_name;
         }
 
         return array_reverse($books);
@@ -35,14 +35,11 @@ class BooksController extends Controller
         ];
         $books = new Books([
             'books_ISBN' => $request->input('books_ISBN'),
-            'books_ISBN13' => $request->input('books_ISBN13'),
             'books_category' => json_encode($category),
             'books_author' => $request->input('books_author'),
             'books_publisher' => $request->input('books_publisher'),
             'books_name' => $request->input('books_name'),
-            'books_sub_title' => $request->input('books_sub_title'),
-            'books_desc' => $request->input('books_desc'),
-            'books_ver' => $request->input('books_ver'),
+            'books_ori_name' => $request->input('books_ori_name'),
             'books_var_date' => $request->input('books_var_date'),
             'is_adult' => $request->input('is_adult'),
             'is_set' => $request->input('is_set'),
@@ -51,7 +48,7 @@ class BooksController extends Controller
 
         $books->save();
 
-        return response()->json('新增書籍完成');
+        return response()->json($books);
     }
 
     //顯示單本
@@ -79,9 +76,7 @@ class BooksController extends Controller
         $book->books_author = $request->input('books_author');
         $book->books_publisher = $request->input('books_publisher');
         $book->books_name = $request->input('books_name');
-        $book->books_sub_title = $request->input('books_sub_title');
-        $book->books_desc = $request->input('books_desc');
-        $book->books_ver = $request->input('books_ver');
+        $book->books_ori_name = $request->input('books_ori_name');
         $book->books_var_date = $request->input('books_var_date');
         $book->is_adult = $request->input('is_adult');
         $book->is_set = $request->input('is_set');
@@ -89,11 +84,35 @@ class BooksController extends Controller
 
         $book->save();
 
-        return response()->json('書籍更新完成');
+        return response()->json('書籍修改完成');
     }
     //刪除該本
     public function destory(Request $request)
     {
+
+    }
+
+    //從取得書籍相關資料
+    public function getBooksDetail($ISBN)
+    {
+        $getBooks = new FindBooksService($ISBN);
+        $books = $getBooks->getBook();
+
+        return response()->json($books);
+    }
+
+    private function _getCurl($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        $data = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $data;
 
     }
 

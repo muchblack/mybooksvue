@@ -16,6 +16,7 @@ import Categories from "./components/Admin/category/Categories";
 import NewCategory from "./components/Admin/category/NewCategory";
 import EditCategory from "./components/Admin/category/EditCategory";
 
+import PublishIndex from "./components/Admin/publisher/PublishIndex";
 import Publishers from "./components/Admin/publisher/Publishers";
 import NewPublisher from "./components/Admin/publisher/NewPublisher";
 import EditPublisher from "./components/Admin/publisher/EditPublisher";
@@ -23,7 +24,7 @@ import EditPublisher from "./components/Admin/publisher/EditPublisher";
 import Mybooks from './components/Admin/mybooks/Mybooks';
 import Users from './components/Admin/users/Users';
 import CateIndex from "./components/Admin/category/CateIndex";
-import PublishIndex from "./components/Admin/publisher/PublishIndex";
+
 
 
 const route_list = [
@@ -95,28 +96,28 @@ const route_list = [
                     }
                 ]
             },
-            {
-                path: 'publishers',
-                name: 'publishers',
-                component: Publishers,
-                children:[
-                    {
-                        path: '',
-                        name: 'PublishIndex',
-                        component: PublishIndex
-                    },
-                    {
-                        path: 'new',
-                        name: 'NewPublisher',
-                        component: NewPublisher,
-                    },
-                    {
-                        path: ':id',
-                        name: 'EditPublisher',
-                        component: EditPublisher,
-                    }
-                ]
-            },
+            // {
+            //     path: 'publishers',
+            //     name: 'publishers',
+            //     component: Publishers,
+            //     children:[
+            //         {
+            //             path: '',
+            //             name: 'PublishIndex',
+            //             component: PublishIndex
+            //         },
+            //         {
+            //             path: 'new',
+            //             name: 'NewPublisher',
+            //             component: NewPublisher,
+            //         },
+            //         {
+            //             path: ':id',
+            //             name: 'EditPublisher',
+            //             component: EditPublisher,
+            //         }
+            //     ]
+            // },
             {
                 path: 'mybooks',
                 components:

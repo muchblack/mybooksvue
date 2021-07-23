@@ -6,10 +6,19 @@
         <div class="form-group">
             <label for="books_ISBN">ISBN碼編號</label>
             <input type="text" class="form-control" v-model="Books.books_ISBN">
+            <button type="button" class="btn btn-primary" @click="searchBooks">取得書籍內容</button>
         </div>
         <div class="form-group">
-            <label for="books_ISBN13">ISBN13碼編號</label>
-            <input type="text" class="form-control" v-model="Books.books_ISBN13">
+            <label for="books_name">書本名稱</label>
+            <input type="text" class="form-control" v-model="Books.books_name">
+        </div>
+        <div class="form-group">
+            <label for="books_name">原文名稱</label>
+            <input type="text" class="form-control" v-model="Books.books_ori_name">
+        </div>
+        <div class="form-group">
+            <label for="books_author">書本作者</label>
+            <input type="text" class="form-control" v-model="Books.books_author">
         </div>
         <div class="form-group">
             <label for="books_category">書本主分類</label>
@@ -29,33 +38,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="books_author">書本作者</label>
-            <input type="text" class="form-control" v-model="Books.books_author">
-        </div>
-        <div class="form-group">
             <label for="books_publisher">書本出版社</label>
-            <select v-model="Books.books_publisher">
-                <option>請選擇</option>
-                <option v-for="Publisher in Publishers" v-bind:value="Publisher.id">
-                    {{ Publisher.publisher_name }}
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="books_name">書本名稱</label>
-            <input type="text" class="form-control" v-model="Books.books_name">
-        </div>
-        <div class="form-group">
-            <label for="books_sub_title">書本副標</label>
-            <input type="text" class="form-control" v-model="Books.books_sub_title">
-        </div>
-        <div class="form-group">
-            <label for="books_desc">書本簡介</label>
-            <textarea v-model="Books.books_desc"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="books_ver">書本出版版本號</label>
-            <input type="text" class="form-control" v-model="Books.books_ver">
+            <input type="text" class="form-control" v-model="Books.books_publisher">
         </div>
         <div class="form-group">
             <label for="books_var_date">書籍出版日</label>
@@ -78,7 +62,7 @@
             <input type="text" class="form-control" v-model="Books.set_no">
         </div>
         <button class="btn btn-primary">送出</button>
-        <button class="btn btn-primary">回上一頁</button>
+        <button type="button" class="btn btn-primary">回上一頁</button>
     </form>
 </template>
 
@@ -90,7 +74,8 @@ export default {
             MainCategories: [],
             SubCategories: [],
             Publishers: [],
-            Books: {}
+            Books: {},
+            oriBooks: {}
         }
     },
     created() {
@@ -99,16 +84,9 @@ export default {
             .then(response => {
                 this.MainCategories = response.data;
             });
-        this.axios
-            .get('/api/publisher/')
-            .then(response => {
-                this.Publishers = response.data;
-            });
-
     },
     watch: {
         "Books.main_category": function (value) {
-            console.log(value)
             this.axios
                 .get(`/api/category/parent/${value}`)
                 .then(response => {
@@ -120,13 +98,29 @@ export default {
         addNewBook(){
             this.axios
                 .post('/api/books/',this.Books)
-                .then(response => (
+                .then(response => {
                     this.$router.push({
-                        name:'Books'
+                        path: '/admin/books'
                     })
-                ))
+                })
                 .catch(err => console.log(err))
                 .finally(() => this.loading = false)
+        },
+        async searchBooks()
+        {
+            this.axios
+                .get('/api/getbooks/'+ this.Books.books_ISBN)
+                .then( response => {
+                    this.oriBooks = response.data;
+                    // console.log(response.data);
+                    // console.log(this.oriBooks.books_publisher);
+                    this.Books.books_author = this.oriBooks.books_author;
+                    this.Books.books_name = this.oriBooks.books_name;
+                    this.Books.books_var_date = this.oriBooks.books_var_date;
+                    this.Books.books_ori_name = this.oriBooks.books_ori_name;
+                    this.Books.books_publisher = this.oriBooks.books_publisher;
+                })
+
         }
     }
 }

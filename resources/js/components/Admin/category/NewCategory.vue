@@ -49,7 +49,7 @@ export default {
                 this.axios
                     .post('/api/category/',this.Category)
                     .then(response => (
-                        this.$router.push({name:'category'})
+                        this.$router.push({path: '/admin/categories'})
                 ))
                 .catch(err => console.log(err))
                 .finally(() => this.loading = false)

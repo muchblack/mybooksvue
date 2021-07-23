@@ -12,7 +12,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3"
+        "laravel/ui": "^3.3",
+        "voku/portable-utf8": "^5.4",
+        "voku/simple_html_dom": "^4.7"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

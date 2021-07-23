@@ -28,6 +28,7 @@ export default new Vuex.Store({
         {
             state.userInfo.id = User.id;
             state.userInfo.name = User.member_name;
+            state.userInfo.member_type = User.member_type;
             state.isLogin = true;
         },
         updateRole(state,user)

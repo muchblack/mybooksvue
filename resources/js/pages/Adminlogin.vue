@@ -63,7 +63,8 @@ export default {
     },
     created() {
         //login頁面加上背景顏色
-        document.body.className='bg-gradient-primary'
+        // document.body.className='bg-gradient-primary'
+        // document.getElementById('content-wrapper').className='bg-gradient-primary'
     },
     methods:
         {
